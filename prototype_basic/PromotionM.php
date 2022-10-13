@@ -17,34 +17,6 @@ class PromotionM extends Connection {
            // Execute query
      mysqli_query($this->Connect(), $insertRow);
     }
-    public function getAllPromotions(){
-        $sqlGetData = 'SELECT * FROM promotion';
-        $result = mysqli_query($this->Connect(), $sqlGetData);
-        $promotionsList = mysqli_fetch_all($result, MYSQLI_ASSOC);
- 
-        $promotions = array();
-
-        foreach($promotionsList as $promotionList){
-            $promotion = new Promotion();
-            $promotion->setId($promotionList['id']);
-            $promotion->setName($promotionList['name']);
-
-            array_push($promotions, $promotion);  
-        }
-        return $promotions;
-    }
-
-    public function getPromotionById($id){
-        $sqlGetData = "SELECT * FROM promotion WHERE id = $id";
-        $result = mysqli_query($this->Connect(), $sqlGetData);
-        $promotionList = mysqli_fetch_assoc($result);
-
-        $promotion = new Promotion();
-        $promotion->setId($promotionList['id']);
-        $promotion->setName($promotionList['name']);
-
-        return $promotion;
-    }
 }
 
 
