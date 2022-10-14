@@ -1,19 +1,22 @@
 <?php
-require_once 'mysqlconnection.php';
-require_once 'promotion.php';
 
-class PromotionDAL extends Connection {
- 
+require_once "mysqlconnection.php";
+require_once "promotion.php";
+
+class PromotionM extends Connection {
+      
+    // method
     public function addPromotion($promotion){
-
+        
         $name = $promotion->getName();
-        // Sql query
-        $insertRow="INSERT INTO promotion (name) VALUES ('$name')";
-                          
-        // Execute query
-        mysqli_query($this->Connect(), $insertRow);
-    }
 
+        // Sql query 
+
+        $insertRow="INSERT INTO promotion (name) VALUES ('$name')"; 
+
+           // Execute query
+     mysqli_query($this->Connect(), $insertRow);
+    }
     public function getAllPromotions(){
         $sqlGetData = 'SELECT * FROM promotion';
         $result = mysqli_query($this->Connect(), $sqlGetData);
@@ -42,7 +45,13 @@ class PromotionDAL extends Connection {
 
         return $promotion;
     }
-
+    public function deletePromotion($id){
+        // Sql query
+        $deleteRow="DELETE FROM promotion WHERE id = $id";
+                          
+        // Execute query
+        mysqli_query($this->Connect(), $deleteRow);
+    }
     public function updatePromotion($id, $name){
         // Sql query
         $updateRow="UPDATE promotion SET name = '$name' WHERE id = $id";
@@ -51,27 +60,8 @@ class PromotionDAL extends Connection {
         mysqli_query($this->Connect(), $updateRow);
     }
 
-    public function deletePromotion($id){
-        // Sql query
-        $deleteRow="DELETE FROM promotion WHERE id = $id";
-                          
-        // Execute query
-        mysqli_query($this->Connect(), $deleteRow);
-    }
-
-    public function searchByTitle($title)
-    {
-        $promotions = [];
-
-        $query = "SELECT * FROM promotion WHERE name LIKE '%$title%'";
-        $result = mysqli_query(connect(), $query);
-
-        while ($promotion = mysqli_fetch_assoc($result))
-        {
-            $promotions[] = $promotion;
-        }
-
-        return $promotions;
-    }
 
 }
+
+
+?>
