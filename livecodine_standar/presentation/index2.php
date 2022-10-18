@@ -15,6 +15,7 @@ $data=$promotionM->getallpromotion();
 </head>
 <body>
     <table>
+        <tr><td><a href="index.php">ajouter</a></td></tr>
         <?php
         foreach($data as $promotion){
         ?>
