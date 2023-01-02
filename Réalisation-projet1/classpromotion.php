@@ -31,18 +31,25 @@ class promotion
         $req = "SELECT * FROM promotion";
         $q = mysqli_query(connecte(), $req);
 ?>
-        <table id="searchresulta">
-            <?php
-            while ($r = mysqli_fetch_array($q)) {
-            ?>
-                <tr>
-                    <td><?php echo $r['id']; ?></td>
-                    <td><?php echo $r['nompromotion']; ?></td>
-                    <td><a href="delete.php?id=<?php echo $r['id']; ?>"><button type="submit" name="btns" value="suppremer">supremer</button></a></td>
-                    <td><a href="formupdate.php?id=<?php echo $r['id']; ?>"><button type="submit" name="btnm" value="modifeir">modifier</button></a></td>
+        <table id="searchresulta" class="table table-bordered">
+            <thead>
+                <th>id</th>
+                <th>nompromotion</th>
+            </thead>
+            <tbody>
+                <?php
+                while ($r = mysqli_fetch_array($q)) {
+                ?>
+                    <tr>
+                        <td><?php echo $r['id']; ?></td>
+                        <td><?php echo $r['nompromotion']; ?></td>
+                        <td><a class="btn btn-danger" name="btns" href="delete.php?id=<?php echo $r['id']; ?>">Supprimer</a></td>
+                        <td><a class="btn btn-warning" name="btnm" href="formupdate.php?id=<?php echo $r['id']; ?>">Modifier</a></td>
 
-                </tr>
-            <?php } ?>
+                    </tr>
+            
+        <?php } ?>
+        </tbody>
         </table>
 <?php
     }

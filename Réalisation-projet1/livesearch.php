@@ -5,12 +5,10 @@ if(isset($_POST['input'])){
     $query="SELECT * FROM promotion where nompromotion LIKE '{$input}%'";
     $result=mysqli_query(connecte(),$query);
     if(mysqli_num_rows($result) > 0){?>
-<table>
+<table class="table table-bordered">
     <thead>
-        <tr>
             <th>id</th>
             <th>nompromotion</th>
-    </tr>
     </thead>
     <tbody>
         <?php 
@@ -21,8 +19,8 @@ if(isset($_POST['input'])){
             <tr>
                 <td><?php echo $id;?></td>
                 <td><?php echo $nompromotion;?></td>
-                <td><a href="delete.php?id=<?php echo $id; ?>"><button type="submit" name="btns" value="suppremer">supremer</button></a></td>
-                    <td><a href="formupdate.php?id=<?php echo $id; ?>"><button type="submit" name="btnm" value="modifeir">modifier</button></a></td>
+                <td><a class="btn btn-danger" name="btns" href="delete.php?id=<?php echo $id; ?>">Supprimer</a></td>
+                    <td><a class="btn btn-warning" name="btnm" href="formupdate.php?id=<?php echo $id; ?>">Modifier</a></td>
             </tr>
             <?php
         }
